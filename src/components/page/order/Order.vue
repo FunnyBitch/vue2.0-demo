@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        <head-top head-title="map"></head-top>
+        <head-top head-title="order"></head-top>
         <h1>{{test}}</h1>
         <input type="text" v-model="test" />
     </div>

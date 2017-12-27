@@ -4,7 +4,7 @@
         <mt-field label="密码" placeholder="请输入密码" type="password" v-model="password" class="pwd-box"></mt-field>
         <mt-button type="primary" size="large" @click = "goMain()" class="btn">登录</mt-button>
         <!--<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined">蓝色</button>-->
-        <!--<button type="button" class="mui-btn mui-btn-success mui-btn-outlined">绿色</button>-->
+        <mt-button type="primary" style="margin-top: 30px" @click="toastTest()">测试</mt-button>
     </div>
 </template>
 
@@ -25,6 +25,11 @@
             ...mapMutations([
                 'SAVE_TOKEN'
             ]),
+            toastTest(){
+                let that = this;
+                that.$testSui.top("我就是想测试一下啊");
+//                that.$loading()
+            },
             goMain(){
                 let that = this;
                 that.$store.dispatch('saveToken',"4645tkfdjg");
@@ -76,6 +81,7 @@
 </script>
 <style scoped>
     @import "../../../../less/globalVariable.less";
+    /*@import "../../../plugins/css/toast.css";*/
     .login-box{
         padding: 180px 20px 20px;
         overflow: hidden;

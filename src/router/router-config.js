@@ -22,7 +22,10 @@ export default [{
         //登录页
         {
             path: '/login',
-            component: Login
+            component: Login,
+            meta: {
+                allowBack: false,  // 添加该字段，表示进入这个路由是需要登录的
+            },
         },
         //轮播图页面
         {
@@ -69,6 +72,7 @@ export default [{
                     name: 'myzone',
                     component: Myzone,
                     beforeEnter: (to, from, next) => {//单个路由的钩子函数
+                        console.log("进入m路由")
                         if(from.fullPath == "/homepage/map"){
                             console.log("从地图页跳转过来的");
                             next()

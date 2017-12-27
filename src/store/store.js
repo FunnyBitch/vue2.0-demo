@@ -8,6 +8,7 @@ import {
     CLEAR_COUNT,
     SAVE_TOKEN,
     STORE_MOVIE_ID,
+    SAVE_BACK
 } from './mutation-types'
 Vue.use(Vuex) // 要记得use一下哦
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
         count: '1',
         token:"",
         contextPathSrc: '后台接口公共部分',
-        language:"zh"
+        language:"zh",
+        allowBack:true
     },
     //同步操作运用
     mutations: {
@@ -38,6 +40,10 @@ export default new Vuex.Store({
         [STORE_MOVIE_ID]( state, res) {
             state.token = res;      //state.数据名 = data
         },
+        //保存allowBack状态
+        [SAVE_BACK](state,res){
+            state.allowBack = res;
+        }
     },
     //异步操作运用
     actions: {
@@ -46,6 +52,10 @@ export default new Vuex.Store({
             //此处是触发mutation的 STORE_MOVIE_ID为"mutation名"
             commit(STORE_MOVIE_ID, res);
         },
+        //保存allowBack状态
+        saveBack({ commit },res){
+            commit(SAVE_BACK, res);
+        }
     },
     getters: {
 

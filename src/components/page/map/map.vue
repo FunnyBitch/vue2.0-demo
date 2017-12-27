@@ -3,9 +3,9 @@
         <head-top head-title="map" showLogout show-logout = "map"></head-top>
         <div class="map-content">
             <div class="v-for-demo">
-                <span class="map-header">v-for列子加filter自定义过滤</span>
+                <span  class="map-header">v-for列子加filter自定义过滤</span>
                 <template v-for = "item in list">
-                    <div class="v-for-list" :style = "item.type != 0 ? 'color:#E43B60' : 'color:#1b1b1b'" @click="changeColor(item)">{{item | testFilter}}</div>
+                    <div ref="demo" class="v-for-list" :style = "item.type != 0 ? 'color:#E43B60' : 'color:#1b1b1b'" @click="changeColor(item)">{{item | testFilter}}</div>
                 </template>
             </div>
             <div class="watch-demo">
@@ -71,6 +71,9 @@
                 numbers:[1,2,3,4,5,6,7,8,9]
             }
         },
+        mounted: function () {
+            console.log(this.$refs)
+        },
         //计算属性
         computed: {
             //找出只能被3整除的数字显示出来
@@ -110,7 +113,16 @@
             clickLi(){
                 let that = this;
                 alert("里")
+            },
+            handleScroll:function(evt,el){
+                if(window.scrollY>50){
+                    TweenMax.to(el,1.5,{
+                        y:-10, opacity:1, ease:sine.easeOut
+                    })
+                }
+                return window.scrollY>100;
             }
+
         },
         watch: {
             type(){

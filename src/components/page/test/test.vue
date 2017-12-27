@@ -51,7 +51,13 @@
 
                 </template>
             </div>
+            <mt-button size="small" style="min-width:60px;margin-left: 20%" type="primary" @click="showDialog()">显示弹窗</mt-button>
+            <tips :head-data="headData" ref="dialog" @sure="sure">
+                <h3 slot="title">{{headData.title}}</h3>
+                <div class="ceshi" slot="body">哈哈  给爷笑一个</div>
+            </tips>
         </div>
+
     </div>
 </template>
 
@@ -59,19 +65,23 @@
     import {mapState,mapMutations} from 'vuex'
     import headTop from './../common/header'
     import componentTest from './componentTest'
+    import tips from './dialog'
     export default {
         name: 'hello',
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                compontent:'父组件传给子组件的内容',
+                compontent:'父组件传给子组件的内容(子组件)',
                 show:true,
                 isEditing:false,
                 hide:true,
                 items: [1,2,3,4,5,6,7,8,9],
                 nextNum: 10,
                 firstIn:true,
-                dataList:[]
+                dataList:[],
+                headData:{
+                    title:"标题(哈哈)"
+                }
             }
         },
         computed: {
@@ -84,13 +94,14 @@
         components: {
             headTop,
             componentTest,
+            tips
         },
         //在<keep-alive>标签下页面第一次进入，钩子的触发顺序created-> mounted-> activated，退出时触发deactivated。当再次进入（前进或者后退）时，只触发activated。
         created: function () {
-            console.log(1);
+
         },
         mounted: function () {
-            console.log(2)
+
         },
         activated: function () {
             var that = this;
@@ -100,15 +111,14 @@
             }else{
                 console.log("不请求数据")
             }
-            console.log(3)
+
         },
         deactivated: function () {
-            console.log(4)
+
         },
         methods:{
             getAjax(){
                 let that = this;
-                console.log(that.$store.state.token);
                 let datas = {
                     token:that.$store.state.token,
                     province:'',
@@ -153,9 +163,17 @@
                 this.TEST_CUT({type,num});
             },
             change(info){
-                console.log(1);
+
                 console.log(info);
                 this.compontent = info;
+            },
+            showDialog(){
+                let that = this;
+                that.$refs.dialog.showDialog();
+            },
+            sure(obj){
+                let that = this;
+                console.log(obj)
             }
         }
     }
@@ -232,5 +250,9 @@
     .list-enter, .list-leave-active {
         opacity: 0;
         transform: translateY(-30px);
+    }
+    .ceshi{
+        font-size: 16px;
+        color: red;
     }
 </style>

@@ -8,10 +8,12 @@ import store from './store/store'  // 引入store
 import FastClick from 'fastclick'//移动端点击延时300处理
 import Mint from 'mint-ui'
 
+
 import 'mint-ui/lib/style.css'
 import axios from 'axios'
 import 'animate.css'
 import ToggleButton from 'vue-js-toggle-button'
+
 
 Vue.prototype.$ajax = axios
 
@@ -19,6 +21,9 @@ Vue.prototype.$ajax = axios
 import './directive/Commondirective'
 // filter(自定义过滤器)
 import './filter/filter'
+import 'vue-sui-toast-demo/lib/toast.css';
+import Toasts from 'vue-sui-toast-demo';
+Vue.use(Toasts);
 
 
 Vue.use(ToggleButton)
@@ -57,9 +62,7 @@ const router = new VueRouter({
     }
 })
 router.beforeEach((to, from, next) => {
-    //console.log(to);
-    //console.log(from);
-    //console.log(next);
+    //控制那个路由不跳转
     if(to.fullPath == "/homepage/order"){
         console.log("到order那一页，不跳转");
         next(false)
@@ -73,7 +76,16 @@ router.beforeEach((to, from, next) => {
             })
         }
     }else {
+        //做浏览器回退功能
         next();
+        let allowBack = true    //    给个默认值true
+        if (to.meta.allowBack !== undefined) {
+            allowBack = to.meta.allowBack
+        };
+        if (!allowBack) {
+           history.pushState(null, null, location.href)
+        };
+        store.dispatch('saveBack',  allowBack);
     }
 
 })

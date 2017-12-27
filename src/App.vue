@@ -21,7 +21,14 @@
         name: 'app',
         //没在<keep-alive>标签下始终进入 created,和mounted钩子函数中
         created: function () {
-            console.log(this.$route)
+            window.onpopstate = () => {
+                if (!this.$store.state.allowBack) {    //    这个allowBack 是存在vuex里面的变量
+                    history.go(1)
+                }
+            }
+        },
+        mounted: function () {
+
         },
         methods: {
 
