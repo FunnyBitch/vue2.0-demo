@@ -3,6 +3,7 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var webpack = require("webpack")
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['babel-polyfill', './src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,7 +33,8 @@ module.exports = {
      new webpack.ProvidePlugin({
          $: "jquery",
         jQuery: "jquery"
-     })
+     }),
+     new ExtractTextPlugin("styles.css"),
   ],
   module: {
     rules: [

@@ -7,6 +7,7 @@
                 <mt-button size="small" style="min-width:60px;margin-left: 20%" type="primary" @click="goRouter()">跳转轮播</mt-button>
                 <mt-button size="small" style="min-width:60px;margin-left: 20%" type="primary" @click="goUploader()">第三方插件</mt-button>
                 <mt-button size="small" style="min-width:60px;margin-left: 20%;margin-top: 20px;" type="primary" @click="goDrag()">自定义指令</mt-button>
+                <mt-button size="small" style="min-width:60px;margin-left: 20%;margin-top: 20px;" type="primary" @click="goMinxins()">组件</mt-button>
             </div>
         </div>
     </transition>
@@ -27,7 +28,8 @@
         },
         //没在<keep-alive>标签下始终进入 created,和mounted钩子函数中
         created: function () {
-            console.log(1)
+            console.log(1);
+            console.log(this.test);
         },
         mounted: function () {
             console.log(2)
@@ -60,7 +62,11 @@
             goDrag(){
                 let that = this;
                 that.$router.push('/drag')
-            }
+            },
+            goMinxins(){
+                let that = this;
+                that.$router.push('/minxins')
+            },
         }
     }
 </script>

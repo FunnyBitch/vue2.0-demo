@@ -10,6 +10,7 @@ const Map = r => require.ensure([], () => r(require('../components/page/map/map'
 const Rotation = r => require.ensure([], () => r(require('../components/page/myzone/subUnit/rotation')), 'Mrzone')
 const Uploader = r => require.ensure([], () => r(require('../components/page/myzone/subUnit/uploader')), 'Mrzone')
 const Drag = r => require.ensure([], () => r(require('../components/page/myzone/subUnit/drag')), 'Mrzone')
+const Minxins = r => require.ensure([], () => r(require('../components/page/myzone/subUnit/selectlist')), 'Mrzone')
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
@@ -41,6 +42,11 @@ export default [{
         {
             path: '/drag',
             component: Drag,
+        },
+        //minxins组件
+        {
+            path: '/minxins',
+            component: Minxins,
         },
         //有footer的四个页面
         {

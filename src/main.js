@@ -24,6 +24,8 @@ import './filter/filter'
 import 'vue-sui-toast-demo/lib/toast.css';
 import Toasts from 'vue-sui-toast-demo';
 Vue.use(Toasts);
+import suiReclick from 'sui-reclick';
+Vue.use(suiReclick);
 
 
 Vue.use(ToggleButton)

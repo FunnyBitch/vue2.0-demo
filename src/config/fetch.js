@@ -35,7 +35,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				value: JSON.stringify(data)
 			})
 		}
-		
+
 		try {
 			const response = await fetch(url, requestConfig);
 			const responseJson = await response.json();
@@ -65,9 +65,6 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				if (requestObj.readyState == 4) {
 					if (requestObj.status == 200) {
 						let obj = requestObj.response
-						if (typeof obj !== 'object') {
-							obj = JSON.parse(obj);
-						}
 						resolve(obj)
 					} else {
 						reject(requestObj)

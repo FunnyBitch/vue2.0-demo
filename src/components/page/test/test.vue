@@ -56,6 +56,7 @@
                 <h3 slot="title">{{headData.title}}</h3>
                 <div class="ceshi" slot="body">哈哈  给爷笑一个</div>
             </tips>
+            <buttom-sui :buttom-obj = 'buttomObj'></buttom-sui>
         </div>
 
     </div>
@@ -66,6 +67,7 @@
     import headTop from './../common/header'
     import componentTest from './componentTest'
     import tips from './dialog'
+    import buttomSui from './buttomSui'
     export default {
         name: 'hello',
         data () {
@@ -81,6 +83,10 @@
                 dataList:[],
                 headData:{
                     title:"标题(哈哈)"
+                },
+                buttomObj:{
+                    color:'#f00',
+                    text:"就是一个按钮"
                 }
             }
         },
@@ -94,7 +100,8 @@
         components: {
             headTop,
             componentTest,
-            tips
+            tips,
+            buttomSui
         },
         //在<keep-alive>标签下页面第一次进入，钩子的触发顺序created-> mounted-> activated，退出时触发deactivated。当再次进入（前进或者后退）时，只触发activated。
         created: function () {
@@ -169,6 +176,7 @@
             },
             showDialog(){
                 let that = this;
+                //获取dom节点that.$refs.dialog
                 that.$refs.dialog.showDialog();
             },
             sure(obj){
